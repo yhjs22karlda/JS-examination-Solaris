@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 1rem;
+}
+
+.planetmap {
+    background: linear-gradient(-90deg,#180b22, #0e194a);
+    width: 100%;
+    aspect-ratio: 2;
+    /* margin: 1rem; */
+}
+
+.planetinfo {
+    background-color: purple;
+    width: 100%;
+    aspect-ratio: 2;
+    /* margin: 1rem; */
+}
