@@ -5,6 +5,7 @@
 body {
     margin: 0rem;
     font-family: 'Roboto Condensed', sans-serif;
+    overflow: hidden;
 }
 
 .polaris {
@@ -157,5 +158,8 @@ footer {
 @media screen and (max-width:1400px) {
     .planetinfo {
         padding: 2rem 10% 2rem 15%;
+    }
+    .hgroup--absolute {
+        font-size: 30px;
     }
 }
