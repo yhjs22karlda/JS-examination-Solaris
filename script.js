@@ -21,7 +21,6 @@ async function getPlanets() {
     data.bodies.forEach((element, index) => {
         element.color = planetColors[index];
     });
-    console.log(data);
     return data.bodies;
 }
 // plot-------------------------------------------------------------------
@@ -44,29 +43,32 @@ function plotPlanets(planets) {
         saturnus.style.position = "relative"
         const rings = document.createElement("article");
         rings.id = "saturnus-rings";
+        rings.setAttribute("data-index", 6)
         saturnus.append(rings);
     }
 }
 // show info---------------------------------------------------------------
 function showPlanetInfo(planet) {
     const planetinfoH1 = document.querySelector(".planetinfo h1");
-    planetinfoH1.textContent = planet.name.toUpperCase();
     const planetinfoSubH = document.querySelector(".planetinfo .hgroup--subheader");
-    planetinfoSubH.textContent = planet.latinName.toUpperCase();
     const planetinfoPara = document.querySelector(".planetinfo__para");
-    planetinfoPara.innerHTML = planet.desc;
     const planetinfoCircum = document.querySelector(".planetinfo__circum p");
-    planetinfoCircum.textContent = planet.circumference.toLocaleString() + " km";
     const planetinfoKmFromSun = document.querySelector(".planetinfo__km-from-sun p");
-    planetinfoKmFromSun.textContent = planet.distance.toLocaleString() + " km";
     const planetinfoMaxT = document.querySelector(".planetinfo__maxT p");
-    planetinfoMaxT.innerHTML = planet.temp.day + " &#8451;";
     const planetinfoMinT = document.querySelector(".planetinfo__minT p");
-    planetinfoMinT.innerHTML = planet.temp.night + " &#8451;";
     const planetinfoMoons = document.querySelector(".planetinfo__moons p");
-    planetinfoMoons.textContent = planet.moons.join(", ") || "---";
     const planetinfoBack = document.querySelector(".planetinfo__back");
+
+    planetinfoH1.textContent = planet.name.toUpperCase();
+    planetinfoSubH.textContent = planet.latinName.toUpperCase();
+    planetinfoPara.innerHTML = planet.desc;
+    planetinfoCircum.textContent = planet.circumference.toLocaleString() + " km";
+    planetinfoKmFromSun.textContent = planet.distance.toLocaleString() + " km";
+    planetinfoMaxT.innerHTML = planet.temp.day + " &#8451;";
+    planetinfoMinT.innerHTML = planet.temp.night + " &#8451;";
+    planetinfoMoons.textContent = planet.moons.join(", ") || "---";
     planetinfoBack.textContent = "<-- Back to Planets";
+
     makeBackground(planet.color);
 
     function makeBackground(color) {
@@ -74,19 +76,40 @@ function showPlanetInfo(planet) {
         background.style.background =
             `radial-gradient(circle at -34%,
             ${color}ff 30%,
-            ${color}44 30%,
-            ${color}44 32%,
-            ${color}11 32%,
-            ${color}11 34%,
+            ${color}44 30% 32%,
+            ${color}11 32% 34%,
             transparent 34%
         ),
         url(stars.png),
         linear-gradient(-90deg,#180b22, #0e194a)`
     }
 }
+// start-----------------------------------------------------------
+// imports etc...
 const planets = await getPlanets();
 plotPlanets(planets);
+const planetElem = document.querySelector(".planets");
+const planetInfoElem = document.querySelector(".planetinfo");
+
+const theSunElem = document.querySelector(".planets__solen");
+const planetsElems = document.querySelectorAll(".planets__planet");
+const back = document.querySelector(".planetinfo__back");
 // eventliteners----------------------------------------------
+theSunElem.addEventListener("click", clickedOnPlanet);
+
+for (let planet of planetsElems) {
+    planet.addEventListener("click", clickedOnPlanet);
+    planet.addEventListener("mouseenter", (e) => {
+        const height = e.target.clientHeight
+        e.target.style.transform = `scale(${(height + 5) / height})`;
+    });
+    planet.addEventListener("mouseleave", (e) => {
+        e.target.style.transform = "scale(1)";
+    });
+}
+
+back.addEventListener("click", toggleScreen);
+
 function clickedOnPlanet(event) {
     const planetIndex = event.target.dataset.index;
     toggleScreen();
@@ -94,33 +117,7 @@ function clickedOnPlanet(event) {
 }
 
 function toggleScreen() {
-    const planetElem = document.querySelector(".planets");
-    const planetInfoElem = document.querySelector(".planetinfo");
     planetInfoElem.classList.toggle("fadeIn")
     planetElem.classList.toggle("fadeOut")
 }
 
-const back = document.querySelector(".planetinfo__back");
-back.addEventListener("click", toggleScreen);
-
-const theSunElem = document.querySelector(".planets__solen");
-theSunElem.addEventListener("click", clickedOnPlanet);
-
-const planetsElems = document.querySelectorAll(".planets__planet");
-for (let planet of planetsElems) {
-    planet.addEventListener("click", clickedOnPlanet);
-    planet.addEventListener("mouseenter", (e) => {
-        const height = e.target.clientHeight
-        e.target.style.transform = `scale(${(height + 5) / height})`;
-        // e.target.style.outline = "2px solid black"
-        // let width = parseInt(e.target.style.width);
-        // e.target.style.width = width + 5 + "px"
-    });
-    planet.addEventListener("mouseleave", (e) => {
-        e.target.style.transform = "scale(1)";
-        // e.target.style.outline = "none"
-        // e.target.style.position = "unset";
-        // let width = parseInt(e.target.style.width);
-        // e.target.style.width = width - 5 + "px"
-    });
-}

@@ -87,7 +87,7 @@ body {
 }
 
 .planetinfo hr {
-    opacity: .2;
+    opacity: .3;
     margin: 2rem 0 1rem;
 }
 
@@ -113,6 +113,10 @@ body {
     margin: 0rem;
     font: 400 24px 'Secular One', sans-serif;
     letter-spacing: .4rem;
+}
+
+.planetinfo__moons {
+    margin-top: 1rem;
 }
 
 .planetinfo__back {
