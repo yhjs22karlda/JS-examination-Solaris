@@ -1,5 +1,8 @@
 // Denna modul innehåller funktioner som ritar upp planeterna på startsidan.
-export default function plotPlanets(planets) {
+
+import planets from "./script.js"
+
+export default function plotPlanets() {
     let scaleFactor = planets[3].circumference;
     const planetsElem = document.querySelector(".planets__planets");
     for (let i = 1; i < planets.length; i++) {

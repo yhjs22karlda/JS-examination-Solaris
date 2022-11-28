@@ -1,15 +1,17 @@
 // Dessa funktioner uppdaterar info-sidan med text och bakgrund.
-export default function showPlanetInfo(planet) {
-    const planetinfoH1 = document.querySelector(".planetinfo h1");
-    const planetinfoSubH = document.querySelector(".planetinfo .hgroup--subheader");
-    const planetinfoPara = document.querySelector(".planetinfo__para");
-    const planetinfoCircum = document.querySelector(".planetinfo__circum p");
-    const planetinfoKmFromSun = document.querySelector(".planetinfo__km-from-sun p");
-    const planetinfoMaxT = document.querySelector(".planetinfo__maxT p");
-    const planetinfoMinT = document.querySelector(".planetinfo__minT p");
-    const planetinfoMoons = document.querySelector(".planetinfo__moons p");
-    const planetinfoBack = document.querySelector(".planetinfo__back");
 
+const background = document.querySelector(".planetinfo");
+const planetinfoH1 = document.querySelector(".planetinfo h1");
+const planetinfoSubH = document.querySelector(".planetinfo .hgroup--subheader");
+const planetinfoPara = document.querySelector(".planetinfo__para");
+const planetinfoCircum = document.querySelector(".planetinfo__circum p");
+const planetinfoKmFromSun = document.querySelector(".planetinfo__km-from-sun p");
+const planetinfoMaxT = document.querySelector(".planetinfo__maxT p");
+const planetinfoMinT = document.querySelector(".planetinfo__minT p");
+const planetinfoMoons = document.querySelector(".planetinfo__moons p");
+const planetinfoBack = document.querySelector(".planetinfo__back");
+
+export default function showPlanetInfo(planet) {
     planetinfoH1.textContent = planet.name.toUpperCase();
     planetinfoSubH.textContent = planet.latinName.toUpperCase();
     planetinfoPara.innerHTML = planet.desc;
@@ -23,7 +25,6 @@ export default function showPlanetInfo(planet) {
 }
 
 function makeBackground(color) {
-    const background = document.querySelector(".planetinfo");
     background.style.background =
         `radial-gradient(circle at -34%,
             ${color}ff 30%,
@@ -32,5 +33,5 @@ function makeBackground(color) {
             transparent 34%
         ),
         url(images/stars.png),
-        linear-gradient(-90deg,#180b22, #0e194a)`;
+        linear-gradient(-90deg, #180b22, #0e194a)`;
 }
