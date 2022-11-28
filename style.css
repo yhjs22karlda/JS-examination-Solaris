@@ -59,12 +59,13 @@ body {
     background: radial-gradient(circle at -340%, #FDCE3F 80%, transparent 81%);
     cursor: pointer;
     transition: left .9s;
-    clip-path: circle(100% at -280%)
+    clip-path: circle(100% at -280%);
+    transition: transform .2s;
 }
 
 .planets__solen:hover {
     transform: scale(1.05);
-    /* box-shadow: 0px 0px 5px 5px #fdce3f; */
+    transition: transform .2s;
 }
 
 .planets__planets {
@@ -79,6 +80,11 @@ body {
 .planets__planet {
     border-radius: 50%;
     cursor: pointer;
+    transition: transform .2s;
+}
+
+.planets__planet:hover {
+    transition: transform .2s;
 }
 
 .planetinfo {
