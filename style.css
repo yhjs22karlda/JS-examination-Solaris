@@ -5,7 +5,7 @@
 body {
     margin: 0rem;
     font-family: 'Roboto Condensed', sans-serif;
-    overflow: hidden;
+    overflow-x: hidden;
     background-color: lightgray;
 }
 
@@ -96,7 +96,7 @@ body {
     transition: right .9s, opacity 5s;
     display: flex;
     flex-direction: column;
-    padding: 5rem 30vw 2rem 30vw;
+    padding: 5rem 25vw 2rem 26vw;
     overflow: auto;
     opacity: 0;
 }
@@ -132,6 +132,7 @@ body {
 
 .planetinfo__moons {
     margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .planetinfo__back {
@@ -169,7 +170,7 @@ footer {
     text-align: center;
 }
 
-@media screen and (max-width:1400px) {
+@media screen and (max-width:1468px) {
     .planetinfo {
         padding: 2rem 10% 2rem 15%;
     }

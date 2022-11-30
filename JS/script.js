@@ -5,5 +5,3 @@ import addEventListeners from "./hey-listen.js";
 export default await getPlanets();
 plotPlanets();
 addEventListeners();
-
-

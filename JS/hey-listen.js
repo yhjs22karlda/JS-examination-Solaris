@@ -14,7 +14,7 @@ export default function addEventListeners() {
         planet.addEventListener("click", clickedOnPlanet);
         planet.addEventListener("mouseenter", (e) => {
             const height = e.target.clientHeight;
-            e.target.style.transform = `scale(${(height + 7) / height})`;
+            e.target.style.transform = `scale(${(height + 8) / height})`;
         });
         planet.addEventListener("mouseleave", (e) => {
             e.target.style.transform = "scale(1)";
